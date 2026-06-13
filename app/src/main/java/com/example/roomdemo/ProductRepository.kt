@@ -8,6 +8,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kotlinx.coroutines.async
+import kotlinx.coroutines.Deferred
 
 class ProductRepository(private val productDao: ProductDao) {
 
@@ -38,7 +40,3 @@ class ProductRepository(private val productDao: ProductDao) {
         }
     }
 }
-
-// Не забудьте импорт:
-import kotlinx.coroutines.async
-import kotlinx.coroutines.Deferred
