@@ -9,6 +9,9 @@ import com.example.roomdemo.db.ProductRoomDatabase
 import com.example.roomdemo.dao.ProductDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -39,5 +42,19 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     fun deleteProduct(name: String) {
         repository.deleteProduct(name)
+    }
+}
+
+// ==========================================
+// VIEWMODEL PROVIDER FACTORY
+// ==========================================
+
+
+class MainViewModelFactory(val application: Application) : ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
+            return MainViewModel(application) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
     }
 }
